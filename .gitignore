@@ -1,0 +1,6 @@
+.DS_Store
+.vscode
+pub
+node_modules
+package-lock.json
+hitch.js

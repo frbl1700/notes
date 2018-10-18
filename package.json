@@ -1,0 +1,13 @@
+{
+    "name": "moment6-projekt",
+    "version": "1.0.0",
+    "description": "Projekt DT173G",
+    "author": "Fredrik Blank",
+    "devDependencies": {
+        "@types/node": "^10.10.3",
+        "gulp": "^3.9.1",
+        "gulp-sass": "^4.0.1",
+        "gulp-typescript": "^5.0.0-alpha.3",
+        "typescript": "^3.0.3"
+    }
+}

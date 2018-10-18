@@ -1,0 +1,64 @@
+
+/*
+ *  DT173G - Projekt (Notes)
+ *  Fredrik Blank
+ */
+
+//Reset
+@import 'reset';
+
+//Fonts
+$fonts: Arial, Helvetica, sans-serif;
+$font-size: 13px;
+
+html, body {
+    font-family: $fonts;
+    font-size: $font-size;
+    background: #f3f3f3;
+}
+
+.text-center {
+    text-align:center;
+}
+
+.container {
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #ccc;
+}
+
+img.responsive {
+    max-width: 100%;
+    height: auto;
+}
+
+.form-item-container {
+    margin-bottom: 1em;
+    
+    label {
+        display: block;
+        margin-bottom: .3em;
+    }
+}
+
+.form-item {
+    width: 100%;
+    padding: 1em;
+    border: 1px solid #eee;
+}
+
+.widget-area {
+    background: #fff;
+    padding: 1em;
+    box-shadow: 1px 2px 1px 2px #eee;
+}
+
+@media screen and (max-width: 640px) {
+
+}

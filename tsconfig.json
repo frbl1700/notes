@@ -1,0 +1,15 @@
+{
+    "files": [
+        "ts/*.ts"
+    ],
+
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "target": "es5",
+        "outFile": "js/notes.js",
+        "lib": [
+            "dom",
+            "es2015"
+        ]
+    }
+}
