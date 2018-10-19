@@ -9,16 +9,14 @@ var NotesManager = /** @class */ (function () {
         this.user = user;
     }
     //Hämta alla anteckningar
-    NotesManager.prototype.getNotes = function (completion) {
-        this.ajaxRequest(this.url + '/get/', function (error, data) {
-            if (!error) {
+    NotesManager.prototype.getNotes = function (user, completion) {
+        this.ajaxRequest('GET', this.url + '/notes/' + user, function (error, data) {
+            if (!error && data) {
                 var notes = [];
                 var obj = JSON.parse(data);
-                if (obj.success && obj.list) {
-                    for (var i = 0; i < obj.list.length; i++) {
-                        var note = { text: obj.list[i].text };
-                        notes.push(note);
-                    }
+                for (var i = 0; i < obj.length; i++) {
+                    var note = { text: obj[i].text, noteId: obj[i].note_id, userId: obj[i].user_id };
+                    notes.push(note);
                 }
                 completion(false, notes);
             }
@@ -27,8 +25,24 @@ var NotesManager = /** @class */ (function () {
             }
         });
     };
-    //Ajax-funktion
-    NotesManager.prototype.ajaxRequest = function (url, completion) {
+    //Lägg till ny anteckning
+    NotesManager.prototype.createNote = function (user, completion) {
+        this.ajaxRequest('POST', this.url + '/notes/' + user, function (error, data) {
+            if (!error) {
+                completion(false, data);
+            }
+        });
+    };
+    //Ta bort anteckning
+    NotesManager.prototype.deleteNote = function (user, note, completion) {
+        this.ajaxRequest('DELETE', this.url + '/notes/' + user + '/' + note, function (error, data) {
+            if (!error) {
+                completion(false, data);
+            }
+        });
+    };
+    //Tar hand om ajax-anrop
+    NotesManager.prototype.ajaxRequest = function (method, url, completion) {
         var request = new XMLHttpRequest();
         request.onreadystatechange = function () {
             if (this.readyState == 4) {
@@ -40,7 +54,7 @@ var NotesManager = /** @class */ (function () {
                 }
             }
         };
-        request.open("GET", url, true /* async */);
+        request.open(method, url, true /* async */);
         request.send();
     };
     return NotesManager;

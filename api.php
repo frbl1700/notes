@@ -3,56 +3,72 @@ require_once('include/config.php');
 
 //JSON
 header("Content-Type: application/json; charset=UTF-8");
-
 //Ta reda på verb (GET, POST, PUT, DELETE)
 $method = $_SERVER['REQUEST_METHOD'];
-
 //Bryt upp URL:en vid varje "/"
 $request = explode('/', trim($_SERVER['PATH_INFO'], '/'));
-
 //Input från request-bodyn
 $input = json_decode(file_get_contents('php://input'), true);
 
-//if ($request[0] != "cars") { 
-//	http_response_code(404);
-//	exit();
-//}
 
-$notes_manager = new NotesManager(DB_HOST, DB_NAME, DB_USER, DB_PASS);
+//Det måste vara minst 2 parametrar
+if (count($request) >= 2) {
+    //User
+    $user_id = intval($request[1]);
+    $note_id = -1;
 
+    //Specifik anteckning
+    if (count($request) >= 3) {
+        $note_id = intval($request[2]);
+    }
+
+    //Hanterar anteckningar
+    $notes_manager = new NotesManager(DB_HOST, DB_NAME, DB_USER, DB_PASS);
+
+    if ($method == "GET") {
+        //Hämta anteckningar
+        $notes = $notes_manager->getNotes($user_id);
+
+        echo json_encode($notes);
+        exit();
+    }
+    else if ($method == "PUT") {
+        //Uppdatera anteckning
+
+        
+    }
+    else if ($method == "POST") {
+        //Lägg till anteckning
+        $new_note_id = $notes_manager->createNote($user_id);
+
+        echo json_encode($new_note_id);
+        exit();
+    }
+    else if ($method == "DELETE") {
+        //Ta bort anteckning
+        $success = $notes_manager->deleteNote($user_id, $note_id);
+
+        echo json_encode($success);
+        exit();
+    }    
+}
+
+
+/*
 $note1 = new Note();
 $note1->text = "En liten anteckning så att säga";
+$note1->id = 1;
 
 $note2 = new Note();
 $note2->text = "Jobba jobba jobba..";
+$note2->id = 2;
 
 $result = new ApiResult();
 $result->success = true;
 $result->list = array($note1, $note2);
 $result->id = 0;
+*/
 
-switch ($method) {
-	case "GET":
-		//$sql = "SELECT ID, Car, Model, Year FROM Cars";
-        //if(isset($request[1])) $sql = $sql . " WHERE ID = " . $request[1] . ";";
-        
-		break;
-    case "PUT":
-    
-        //$sql = "UPDATE Cars SET Car = '" . $input['car'] . "', Model = '" . $input['model'] . "', Year = '" . $input['year'] . "' WHERE ID = " . $request[1] . ";";
-        
-    	break;
-	case "POST":
-        //$sql = "INSERT INTO Cars (Car, Model, Year) VALUES ('" . $input['car'] . "', '" . $input['model'] . "', " . $input['year'] . ");";
-        
-		break;
-	case "DELETE":
-        //$sql = "DELETE FROM Cars WHERE ID = " . $request[1] . ";";
-        
-        break;
-    default:
-        break;
-}
-
-echo json_encode($result);
+//Något gick fel
+echo json_encode(false);
 ?>

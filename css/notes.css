@@ -6,6 +6,13 @@ body, div, p, span {
   margin: 0;
   padding: 0; }
 
+textarea {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  width: 100%;
+  height: 100%; }
+
 html, body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 13px;
@@ -42,4 +49,36 @@ img.responsive {
 .widget-area {
   background: #fff;
   padding: 1em;
-  box-shadow: 1px 2px 1px 2px #eee; }
+  box-shadow: 1px 2px 1px 2px #eee;
+  min-height: 50vh; }
+
+.pane {
+  position: fixed;
+  bottom: 0;
+  min-height: 80px;
+  background: #666;
+  width: 100%;
+  z-index: 90; }
+  .pane .pane-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline; }
+
+.note {
+  min-width: 200px;
+  max-width: 400px;
+  min-height: 100px;
+  background: #e6d36a;
+  display: inline-block;
+  margin-left: .5em;
+  margin-right: .5em;
+  margin-top: .5em;
+  margin-bottom: .5em;
+  padding: .5em;
+  border-radius: 2px;
+  z-index: 99; }
+  .note .note-editor {
+    xborder: 1px solid red;
+    visibility: hidden; }
+    .note .note-editor textarea {
+      min-height: 100px; }
