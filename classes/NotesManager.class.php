@@ -2,7 +2,7 @@
 
 interface INotesManagement {
     function getNotes($user_id);
-    function createNote($user_id);
+    function createNote($user_id, $text);
     function updateNote($user_id, $note_id, $text);
     function deleteNote($user_id, $note_id);
 }
@@ -46,12 +46,12 @@ class NotesManager implements INotesManagement {
         return $notes;
     }
 
-    function createNote($user_id) {
+    function createNote($user_id, $text) {
         $id = 0;
-        $sql = "INSERT notes (user_id, text, created) VALUES (?, 'Text text text ...', NOW())";
+        $sql = "INSERT notes (user_id, text, created) VALUES (?, ?, NOW())";
 
         if ($stmt = $this->db->prepare($sql)) {
-            $stmt->bind_param('i', $user_id);
+            $stmt->bind_param('is', $user_id, $text);
             $stmt->execute();
             $id = $stmt->insert_id;
             $stmt->close();

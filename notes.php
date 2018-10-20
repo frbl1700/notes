@@ -7,7 +7,20 @@ if (empty($_SESSION['user'])) {
 <?php require_once('include/header.php'); ?>
 
 <div>
-    <h1 class="text-center">Notes!</h1>
+    <div class="container">
+        <nav>
+            <div class="navigation">
+                <div>
+                    <h1 class="text-center">Notes!</h1>
+                </div>
+
+                <div>
+                    <i class="fa fa-user"></i>
+                    <a href="logout.php">Logga ut</a>
+                </div>
+            </div>
+        </nav>
+    </div>
 
     <div class="container">
         <div class="widget-area">
@@ -19,18 +32,18 @@ if (empty($_SESSION['user'])) {
 <div class="pane">
     <div class="pane-content">
         <div>
-            <span>..</span>
+            <span>&nbsp;</span>
         </div>
 
         <div>
-            <a href="javascript:;" onclick="createNote();" style="color:#fafafa; font-size:3em;">
+            <a href="javascript:;" onclick="createNote();">
                 <i class="fa fa-plus-circle"></i>
             </a>
         </div>
 
         <div>
-            <div id="trash-bin" droppable="true" style="border:1px solid black; width:50px; height:50px;">
-                <span class="fa fa-trash" style="font-size:3em; color:#fafafa;"></span>
+            <div id="trash-bin">
+                <span class="fa fa-trash"></span>
             </div>
         </div>
     </div>
@@ -84,14 +97,17 @@ if (empty($_SESSION['user'])) {
                     textarea.setAttribute('data-id', id);
                     textarea.setAttribute('autofocus', null);
 
+                    //Hantera spara automatiskt när man skriver
                     textarea.addEventListener('keyup', function(event) {
                         saveNote(this);
                     });
 
+                    //Dölj editor när man hoppar ur
                     textarea.addEventListener('blur', function(event) {
                         hideEditor(this);
                     }); 
                     
+                    //Visa editor när man klickar i en anteckning
                     note.addEventListener('click', function(event) {
                         showEditor(this);
                     });
@@ -124,7 +140,8 @@ if (empty($_SESSION['user'])) {
 
     function initNotes() {
         $('.note').draggable({
-            revert: 'invalid'
+            revert: 'invalid',
+            scroll: false 
         });
     }
 

@@ -11,7 +11,6 @@
 $fonts: Arial, Helvetica, sans-serif;
 $font-size: 13px;
 
-
 @mixin box-sizing {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -36,6 +35,15 @@ html, body {
     background: #f3f3f3;
 }
 
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #666;
+}
+
 .text-center {
     text-align:center;
 }
@@ -55,6 +63,12 @@ html, body {
     button {
         background: #e6d36a;
     }
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 hr {
@@ -93,15 +107,21 @@ img.responsive {
 .pane {
     position:fixed;
     bottom:0;
-    min-height: 80px;
     background:#666;
     width:100%;
     z-index: 90;
+    padding-top: 1em;
+    padding-bottom: 1em;
 
     .pane-content {
         display: flex;
         justify-content: space-around;
-        align-items: baseline;
+        align-items: center;
+    }
+
+    #trash-bin, a {
+        color: #fafafa;
+        font-size: 3em;
     }
 }
 
@@ -118,8 +138,6 @@ img.responsive {
     padding: .5em;
     border-radius: 2px;
     z-index: 99;
-   
-    //.note-content { }
 
     .note-editor {
         visibility: hidden;
@@ -140,5 +158,9 @@ img.responsive {
         padding: 0;
         padding-left: .5em;
         padding-top: .5em;
+    }
+
+    .pane {
+        position: static;
     }
 }

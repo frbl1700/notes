@@ -25,6 +25,13 @@ html, body {
   font-size: 13px;
   background: #f3f3f3; }
 
+a {
+  color: #333;
+  text-decoration: none; }
+
+a:hover {
+  color: #666; }
+
 .text-center {
   text-align: center; }
 
@@ -40,6 +47,11 @@ html, body {
   max-width: 480px; }
   .login-container button {
     background: #e6d36a; }
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
 
 hr {
   border: 0;
@@ -70,14 +82,18 @@ img.responsive {
 .pane {
   position: fixed;
   bottom: 0;
-  min-height: 80px;
   background: #666;
   width: 100%;
-  z-index: 90; }
+  z-index: 90;
+  padding-top: 1em;
+  padding-bottom: 1em; }
   .pane .pane-content {
     display: flex;
     justify-content: space-around;
-    align-items: baseline; }
+    align-items: center; }
+  .pane #trash-bin, .pane a {
+    color: #fafafa;
+    font-size: 3em; }
 
 .note {
   min-width: 200px;
@@ -105,4 +121,6 @@ img.responsive {
     margin-right: 0;
     padding: 0;
     padding-left: .5em;
-    padding-top: .5em; } }
+    padding-top: .5em; }
+  .pane {
+    position: static; } }

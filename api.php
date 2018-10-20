@@ -41,7 +41,7 @@ if (count($request) >= 2) {
     }
     else if ($method == "POST") {
         //Lägg till anteckning
-        $new_note_id = $notes_manager->createNote($user_id);
+        $new_note_id = $notes_manager->createNote($user_id, "Text text text ..");
 
         echo json_encode($new_note_id);
         exit();
