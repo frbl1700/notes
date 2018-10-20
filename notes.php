@@ -49,7 +49,10 @@ if (empty($_SESSION['user'])) {
         ver: '1.0',
 
         //Initera manager
-        manager: new NotesManager(this.user)
+        manager: new NotesManager(this.user),
+
+        //Lite kontroll över när anteckningar ska uppdateras
+        saveQueue: null
     };
 
     function loadNotes() {
@@ -71,15 +74,23 @@ if (empty($_SESSION['user'])) {
                     //Text
                     var text = data[i].text;
 
-                    textarea.value = text;
-                    textarea.id = 'editor-' + id;
-                    
                     note.id = 'note-' + id;
                     note.setAttribute('data-id', id);
-                    
                     cont.id = 'cont-' + id;
                     cont.innerHTML = data[i].text;
 
+                    textarea.value = text;
+                    textarea.id = 'editor-' + id;
+                    textarea.setAttribute('data-id', id);
+
+                    textarea.addEventListener('keyup', function(event) {
+                        saveNote(this);
+                    });
+
+                    textarea.addEventListener('blur', function(event) {
+                        hideEditor(this);
+                    }); 
+                    
                     note.addEventListener('click', function(event) {
                         showEditor(this);
                     });
@@ -116,17 +127,42 @@ if (empty($_SESSION['user'])) {
         });
     }
 
+    function saveNote(elem) {
+        var id = elem.getAttribute('data-id');
+        var content = document.getElementById('cont-' + id);
+        var text = elem.value;
+
+        if (notesObj.saveQueue && 
+            notesObj.saveQueue != null) {
+            clearTimeout(notesObj.saveQueue);
+        }
+        
+        notesObj.saveQueue = setTimeout(function() {
+            //Uppdatera
+            notesObj.manager.updateNote(notesObj.user, id, text, function(error, data) {   });
+        }, 300);
+
+        //Uppdatera även texten
+        content.innerHTML = text;
+    }
+
+    function hideEditor(elem) {
+        var id = elem.getAttribute('data-id');
+        var note = document.getElementById('note-' + id);
+        var editor = note.querySelector('.note-editor');
+        var content = document.getElementById('cont-' + id);
+
+        editor.style.visibility = 'hidden';
+        content.style.visibility = 'visible';
+    }
+
     function showEditor(elem) {
         var id = elem.getAttribute('data-id');
-
-        //var ta = elem.querySelector('textarea');
-
         var editor = elem.querySelector('.note-editor');
         var content = document.getElementById('cont-' + id);
 
         editor.style.visibility = 'visible';
         content.style.visibility = 'hidden';
-        //elem.style.display = 'block';
     }
 
     (function() {

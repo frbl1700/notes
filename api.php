@@ -10,7 +10,6 @@ $request = explode('/', trim($_SERVER['PATH_INFO'], '/'));
 //Input från request-bodyn
 $input = json_decode(file_get_contents('php://input'), true);
 
-
 //Det måste vara minst 2 parametrar
 if (count($request) >= 2) {
     //User
@@ -32,10 +31,13 @@ if (count($request) >= 2) {
         echo json_encode($notes);
         exit();
     }
-    else if ($method == "PUT") {
+    else if ($method == "PUT") { 
         //Uppdatera anteckning
+        $text = $input['text']; 
+        $success = $notes_manager->updateNote($user_id, $note_id, $text);
 
-        
+        echo json_encode($success);
+        exit();
     }
     else if ($method == "POST") {
         //Lägg till anteckning
@@ -52,22 +54,6 @@ if (count($request) >= 2) {
         exit();
     }    
 }
-
-
-/*
-$note1 = new Note();
-$note1->text = "En liten anteckning så att säga";
-$note1->id = 1;
-
-$note2 = new Note();
-$note2->text = "Jobba jobba jobba..";
-$note2->id = 2;
-
-$result = new ApiResult();
-$result->success = true;
-$result->list = array($note1, $note2);
-$result->id = 0;
-*/
 
 //Något gick fel
 echo json_encode(false);

@@ -97,12 +97,10 @@ img.responsive {
     border-radius: 2px;
     z-index: 99;
    
-    .note-content { }
+    //.note-content { }
 
     .note-editor {
-        xborder: 1px solid red;
         visibility: hidden;
-        
 
         textarea {
             min-height: 100px;
@@ -112,5 +110,5 @@ img.responsive {
 
 
 @media screen and (max-width: 640px) {
-
+    
 }

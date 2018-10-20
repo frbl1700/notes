@@ -10,7 +10,7 @@ var NotesManager = /** @class */ (function () {
     }
     //Hämta alla anteckningar
     NotesManager.prototype.getNotes = function (user, completion) {
-        this.ajaxRequest('GET', this.url + '/notes/' + user, function (error, data) {
+        this.ajaxRequest('GET', this.url + '/notes/' + user, null, function (error, data) {
             if (!error && data) {
                 var notes = [];
                 var obj = JSON.parse(data);
@@ -27,7 +27,17 @@ var NotesManager = /** @class */ (function () {
     };
     //Lägg till ny anteckning
     NotesManager.prototype.createNote = function (user, completion) {
-        this.ajaxRequest('POST', this.url + '/notes/' + user, function (error, data) {
+        this.ajaxRequest('POST', this.url + '/notes/' + user, null, function (error, data) {
+            if (!error) {
+                completion(false, data);
+            }
+        });
+    };
+    //Uppdatera anteckning
+    NotesManager.prototype.updateNote = function (user, note, text, completion) {
+        var obj = { 'text': text };
+        var data = JSON.stringify(obj);
+        this.ajaxRequest('PUT', this.url + '/notes/' + user + '/' + note, data, function (error, data) {
             if (!error) {
                 completion(false, data);
             }
@@ -35,15 +45,17 @@ var NotesManager = /** @class */ (function () {
     };
     //Ta bort anteckning
     NotesManager.prototype.deleteNote = function (user, note, completion) {
-        this.ajaxRequest('DELETE', this.url + '/notes/' + user + '/' + note, function (error, data) {
+        this.ajaxRequest('DELETE', this.url + '/notes/' + user + '/' + note, null, function (error, data) {
             if (!error) {
                 completion(false, data);
             }
         });
     };
     //Tar hand om ajax-anrop
-    NotesManager.prototype.ajaxRequest = function (method, url, completion) {
+    NotesManager.prototype.ajaxRequest = function (method, url, data, completion) {
         var request = new XMLHttpRequest();
+        request.open(method, url, true /* async */);
+        request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
         request.onreadystatechange = function () {
             if (this.readyState == 4) {
                 if (this.status == 200) {
@@ -54,8 +66,7 @@ var NotesManager = /** @class */ (function () {
                 }
             }
         };
-        request.open(method, url, true /* async */);
-        request.send();
+        request.send(data);
     };
     return NotesManager;
 }());

@@ -3,6 +3,7 @@
 interface INotesManagement {
     function getNotes($user_id);
     function createNote($user_id);
+    function updateNote($user_id, $note_id, $text);
     function deleteNote($user_id, $note_id);
 }
 
@@ -31,7 +32,6 @@ class NotesManager implements INotesManagement {
 
             if ($result = $stmt->get_result()) {
                 while ($row = $result->fetch_assoc()) {
-                    //$id = intval($row['user_id']);
                     $note = new Note();
                     $note->note_id = intval($row['note_id']);
                     $note->user_id = intval($row['user_id']);
@@ -58,6 +58,20 @@ class NotesManager implements INotesManagement {
         }
 
         return $id;
+    }
+
+    function updateNote($user_id, $note_id, $text) {
+        $sql = "UPDATE notes SET text = ? WHERE note_id = ? AND user_id = ?";
+
+        if ($stmt = $this->db->prepare($sql)) {
+            $stmt->bind_param('sii', $text, $note_id, $user_id);
+            $stmt->execute();
+            $stmt->close();
+
+            return true;
+        }
+
+        return false;
     }
 
     function deleteNote($user_id, $note_id) {

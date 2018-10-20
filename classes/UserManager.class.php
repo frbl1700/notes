@@ -29,7 +29,6 @@ class UserManager implements IUserManagement {
         if ($stmt = $this->db->prepare($sql)) {
             $stmt->bind_param('s', $email);
             $stmt->execute();
-
             $id = $stmt->insert_id;
             $stmt->close();
         }
