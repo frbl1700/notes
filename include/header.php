@@ -14,14 +14,3 @@ require_once('include/config.php');
     <title>Notes</title> 
 </head>
 <body>
-
-<div>
-    <header>
-        <div>
-            <nav>
-                
-
-            </nav>
-        </div>
-    </header>
-</div>

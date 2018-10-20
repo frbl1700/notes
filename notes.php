@@ -82,6 +82,7 @@ if (empty($_SESSION['user'])) {
                     textarea.value = text;
                     textarea.id = 'editor-' + id;
                     textarea.setAttribute('data-id', id);
+                    textarea.setAttribute('autofocus', null);
 
                     textarea.addEventListener('keyup', function(event) {
                         saveNote(this);
@@ -160,9 +161,13 @@ if (empty($_SESSION['user'])) {
         var id = elem.getAttribute('data-id');
         var editor = elem.querySelector('.note-editor');
         var content = document.getElementById('cont-' + id);
+        var textarea = document.getElementById('editor-' + id);
 
         editor.style.visibility = 'visible';
         content.style.visibility = 'hidden';
+
+        textarea.focus();
+        elem.preventDefault();
     }
 
     (function() {

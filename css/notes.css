@@ -11,7 +11,14 @@ textarea {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  border-radius: 3px; }
+
+input[type=text], input[type=submit], button {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border-radius: 3px; }
 
 html, body {
   font-family: Arial, Helvetica, sans-serif;
@@ -25,6 +32,14 @@ html, body {
   max-width: 960px;
   margin-left: auto;
   margin-right: auto; }
+
+.login-container {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30%;
+  max-width: 480px; }
+  .login-container button {
+    background: #e6d36a; }
 
 hr {
   border: 0;
@@ -66,7 +81,7 @@ img.responsive {
 
 .note {
   min-width: 200px;
-  max-width: 400px;
+  max-width: 250px;
   min-height: 100px;
   background: #e6d36a;
   display: inline-block;
@@ -78,7 +93,16 @@ img.responsive {
   border-radius: 2px;
   z-index: 99; }
   .note .note-editor {
-    xborder: 1px solid red;
     visibility: hidden; }
     .note .note-editor textarea {
       min-height: 100px; }
+
+@media screen and (max-width: 600px) {
+  .note {
+    max-width: initial;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+    padding-left: .5em;
+    padding-top: .5em; } }
