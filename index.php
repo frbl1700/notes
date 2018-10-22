@@ -2,6 +2,10 @@
 
 <div class="container">
     <div class="login-container">
+        <div class="logo-container">
+            <img src="img/logo.png" class="logo-big" alt="Notes logo"/>
+        </div>
+        
         <div>
             <form method="post" action="login.php" id="login-form">
                 <div class="form-item-container">
@@ -19,6 +23,7 @@
             </p>
         </div>
     </div>
+
 </div>
 
 <?php require_once('include/footer.php'); ?>

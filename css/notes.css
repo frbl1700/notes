@@ -43,15 +43,26 @@ a:hover {
 .login-container {
   margin-left: auto;
   margin-right: auto;
-  margin-top: 30%;
-  max-width: 480px; }
+  margin-top: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
   .login-container button {
     background: #e6d36a; }
+  .login-container .logo-container {
+    margin-bottom: 2em; }
+    .login-container .logo-container .logo-big {
+      max-width: 150px; }
 
 .navigation {
   display: flex;
   justify-content: space-between;
-  align-items: center; }
+  align-items: baseline; }
+  .navigation .logo-container {
+    margin-top: 1em;
+    margin-bottom: 1em; }
+    .navigation .logo-container .logo {
+      max-width: 80px; }
 
 hr {
   border: 0;
@@ -63,7 +74,8 @@ img.responsive {
   height: auto; }
 
 .form-item-container {
-  margin-bottom: 1em; }
+  margin-bottom: 1em;
+  min-width: 320px; }
   .form-item-container label {
     display: block;
     margin-bottom: .3em; }
@@ -99,7 +111,7 @@ img.responsive {
   min-width: 200px;
   max-width: 250px;
   min-height: 100px;
-  background: #e6d36a;
+  background: #f5e9a0;
   display: inline-block;
   margin-left: .5em;
   margin-right: .5em;

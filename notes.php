@@ -11,10 +11,12 @@ if (empty($_SESSION['user'])) {
         <nav>
             <div class="navigation">
                 <div>
-                    <h1 class="text-center">Notes!</h1>
+                    <div class="logo-container">
+                        <img src="img/logo.png" alt="Notes logo" class="logo" />
+                    </div>
                 </div>
 
-                <div>
+                <div class="logout-container">
                     <i class="fa fa-user"></i>
                     <a href="logout.php">Logga ut</a>
                 </div>
@@ -64,7 +66,7 @@ if (empty($_SESSION['user'])) {
         //Initera manager
         manager: new NotesManager(this.user),
 
-        //Lite kontroll över när anteckningar ska uppdateras
+        //Lite kontroll över när anteckningar ska sparas/uppdateras
         saveQueue: null
     };
 

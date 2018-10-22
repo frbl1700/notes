@@ -27,7 +27,11 @@ class NotesManager {
 				var obj = JSON.parse(data);
 
 				for (var i = 0; i < obj.length; i++) {
-					let note : Note = { text: obj[i].text, noteId: obj[i].note_id, userId: obj[i].user_id };
+					let note : Note = { 
+						text: obj[i].text,
+						noteId: obj[i].note_id,
+						userId: obj[i].user_id 
+					};
 					notes.push(note);
 				}
 			

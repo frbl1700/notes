@@ -15,7 +15,11 @@ var NotesManager = /** @class */ (function () {
                 var notes = [];
                 var obj = JSON.parse(data);
                 for (var i = 0; i < obj.length; i++) {
-                    var note = { text: obj[i].text, noteId: obj[i].note_id, userId: obj[i].user_id };
+                    var note = {
+                        text: obj[i].text,
+                        noteId: obj[i].note_id,
+                        userId: obj[i].user_id
+                    };
                     notes.push(note);
                 }
                 completion(false, notes);

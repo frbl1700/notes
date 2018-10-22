@@ -57,18 +57,37 @@ a:hover {
 .login-container {
     margin-left: auto;
     margin-right: auto;
-    margin-top: 30%;
-    max-width: 480px;
+    margin-top: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     button {
         background: #e6d36a;
+    }
+
+    .logo-container {
+        margin-bottom: 2em;
+
+        .logo-big {
+            max-width: 150px;
+        }
     }
 }
 
 .navigation {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: baseline;
+
+    .logo-container {
+        margin-top: 1em;
+        margin-bottom: 1em;
+    
+        .logo {
+            max-width: 80px;
+        }    
+    }
 }
 
 hr {
@@ -84,6 +103,7 @@ img.responsive {
 
 .form-item-container {
     margin-bottom: 1em;
+    min-width: 320px;
     
     label {
         display: block;
@@ -129,7 +149,8 @@ img.responsive {
     min-width: 200px;
     max-width: 250px;
     min-height: 100px;
-    background: #e6d36a;
+    //background: #e6d36a;
+    background: #f5e9a0;
     display: inline-block;
     margin-left: .5em;
     margin-right: .5em;
