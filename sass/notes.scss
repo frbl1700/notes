@@ -148,8 +148,8 @@ img.responsive {
 .note {
     min-width: 200px;
     max-width: 250px;
-    min-height: 100px;
-    //background: #e6d36a;
+    height: 150px;
+    overflow-y: auto;
     background: #f5e9a0;
     display: inline-block;
     margin-left: .5em;
@@ -159,9 +159,15 @@ img.responsive {
     padding: .5em;
     border-radius: 2px;
     z-index: 99;
+    white-space: pre-line;
+
+    .note-content {
+
+    }
 
     .note-editor {
-        visibility: hidden;
+        xvisibility: hidden;
+        display: none;
 
         textarea {
             min-height: 100px;

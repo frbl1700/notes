@@ -1,7 +1,7 @@
 <?php 
 require_once('include/config.php');
 
-//JSON
+//JSON format för output
 header("Content-Type: application/json; charset=UTF-8");
 //Ta reda på verb (GET, POST, PUT, DELETE)
 $method = $_SERVER['REQUEST_METHOD'];

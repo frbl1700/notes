@@ -1,7 +1,7 @@
 {
-    "name": "moment6-projekt",
+    "name": "notes",
     "version": "1.0.0",
-    "description": "Projekt DT173G",
+    "description": "Manage your notes",
     "author": "Fredrik Blank",
     "devDependencies": {
         "@types/node": "^10.10.3",
