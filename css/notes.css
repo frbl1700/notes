@@ -8,16 +8,12 @@ body, div, p, span {
 
 textarea {
   box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   width: 100%;
   height: 100%;
   border-radius: 3px; }
 
 input[type=text], input[type=submit], button {
   box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   border-radius: 3px; }
 
 html, body {
@@ -108,10 +104,9 @@ img.responsive {
     font-size: 3em; }
 
 .note {
-  min-width: 200px;
-  max-width: 250px;
+  width: 250px;
   height: 150px;
-  overflow-y: auto;
+  overflow-y: hidden;
   background: #f5e9a0;
   display: inline-block;
   margin-left: .5em;
@@ -123,8 +118,7 @@ img.responsive {
   z-index: 99;
   white-space: pre-line; }
   .note .note-editor {
-    xvisibility: hidden;
-    display: none; }
+    visibility: hidden; }
     .note .note-editor textarea {
       min-height: 100px; }
 

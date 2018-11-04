@@ -5,7 +5,7 @@
 
 function loadNotes() {
     document.getElementById('notes-data').innerHTML = '';
-    
+
     //Hämta anteckningar
     notesObj.manager.getNotes(notesObj.user, function(error, data) {
         if (!error && data && data.length) {
@@ -105,7 +105,7 @@ function hideEditor(elem) {
     var editor = note.querySelector('.note-editor');
     var content = document.getElementById('cont-' + id);
 
-    editor.style.display = 'none';
+    editor.style.visibility = 'hidden';
     content.style.display = 'block';
 }
 
@@ -115,9 +115,8 @@ function showEditor(elem) {
     var content = document.getElementById('cont-' + id);
     var textarea = document.getElementById('editor-' + id);
 
-    editor.style.display = 'block';
+    editor.style.visibility = 'visible';
     content.style.display = 'none';
-
     textarea.focus();
 }
 

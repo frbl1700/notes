@@ -13,8 +13,6 @@ $font-size: 13px;
 
 @mixin box-sizing {
     box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
 }
 
 textarea {
@@ -146,10 +144,9 @@ img.responsive {
 }
 
 .note {
-    min-width: 200px;
-    max-width: 250px;
+    width: 250px;
     height: 150px;
-    overflow-y: auto;
+    overflow-y: hidden;
     background: #f5e9a0;
     display: inline-block;
     margin-left: .5em;
@@ -161,20 +158,13 @@ img.responsive {
     z-index: 99;
     white-space: pre-line;
 
-    .note-content {
-
-    }
-
     .note-editor {
-        xvisibility: hidden;
-        display: none;
-
+        visibility: hidden;
         textarea {
             min-height: 100px;
         }
     }
 }
-
 
 @media screen and (max-width: 600px) {
     .note {

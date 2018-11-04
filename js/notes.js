@@ -58,8 +58,11 @@ var NotesManager = /** @class */ (function () {
     //Tar hand om ajax-anrop
     NotesManager.prototype.ajaxRequest = function (method, url, data, completion) {
         var request = new XMLHttpRequest();
+        //Förhindra cachning
+        url += ('?d=' + new Date().getTime());
         request.open(method, url, true /* async */);
         request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+        request.setRequestHeader('Cache-Control', 'no-cache');
         request.onreadystatechange = function () {
             if (this.readyState == 4) {
                 if (this.status == 200) {
